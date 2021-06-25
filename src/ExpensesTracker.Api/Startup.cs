@@ -24,6 +24,8 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace ExpensesTracker.Api
 {
+    // TODO: healthchecks
+    // TODO: unit test
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -76,6 +78,7 @@ namespace ExpensesTracker.Api
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                // TODO: error handling
             }
 
             app.UseSwagger();
