@@ -1,17 +1,14 @@
 # Expenses tracker
-RESTful service for managing personal expenses.
+REST API server application to improve my skills with .NET
 
 ## Goals
-- RESTful web API 
+- REST API 
 - using MS-SQL
-- HATEOAS
-- filters, sorting, pages
-- user secrets
-- versions
-- JSON and XML responses
-- Swagger
-
+- implementation of HATEOAS
+- endpoint with filters, sorting and paging
+- usage of Secret management
+- versioning API
+- both JSON and XML responses
+- Swagger documentation
 - healthchecks
-- testing
-- PATCH
-- error handling
+- unit tests
