@@ -1,7 +1,7 @@
 # Expenses tracker
 REST API server application to improve my skills with .NET
 
-## Goals
+**Goals**
 - REST API 
 - using MS-SQL
 - implementation of HATEOAS
