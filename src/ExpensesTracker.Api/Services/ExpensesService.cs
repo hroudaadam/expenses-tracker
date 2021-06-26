@@ -22,7 +22,7 @@ namespace ExpensesTracker.Api.Services
 
     public class ExpensesService : IExpensesService
     {
-        private DataContext _context;
+        private readonly DataContext _context;
 
         public ExpensesService(DataContext context)
         {

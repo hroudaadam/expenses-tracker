@@ -25,7 +25,6 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 namespace ExpensesTracker.Api
 {
     // TODO: healthchecks
-    // TODO: unit test
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -52,10 +51,15 @@ namespace ExpensesTracker.Api
                 .AddXmlSerializerFormatters()
                 .ConfigureApiBehaviorOptions(o =>
                 {
+                    // empty 404 erorrs
                     o.SuppressMapClientErrors = true;
                 });
 
-            services.AddApiVersioning();
+            services.AddApiVersioning(o => {
+                // custom api version errors
+                o.ErrorResponses = new VersioningErrorResponseProvider();     
+            });
+
             services.AddVersionedApiExplorer(o =>
             {
                 o.GroupNameFormat = "'v'VVV";
@@ -63,6 +67,7 @@ namespace ExpensesTracker.Api
             });
 
             services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
+
             services.AddSwaggerGen(
                 options =>
                 {
@@ -70,16 +75,15 @@ namespace ExpensesTracker.Api
                     options.OperationFilter<SwaggerDefaultValues>();
                 });
 
+            // logic services
             services.AddScoped<IExpensesService, ExpensesService>();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider provider)
+        public void Configure(IApplicationBuilder app, IApiVersionDescriptionProvider provider)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-                // TODO: error handling
-            }
+            app.UseHttpsRedirection();
+
+            app.UseExceptionHandler("/error");
 
             app.UseSwagger();
             app.UseSwaggerUI(
@@ -92,7 +96,6 @@ namespace ExpensesTracker.Api
                     }
                 });
 
-            app.UseHttpsRedirection();
 
             app.UseRouting();
 
