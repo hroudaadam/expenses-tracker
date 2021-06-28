@@ -9,8 +9,11 @@ namespace ExpensesTracker.Api.Data
 {
     public class DataContext : DbContext
     {
-        public DbSet<Expense> Expenses { get; set; }  
+        public virtual DbSet<Expense> Expenses { get; set; }  
         public DataContext(DbContextOptions<DataContext> options) : base(options)
+        {}
+
+        public DataContext()
         {}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
