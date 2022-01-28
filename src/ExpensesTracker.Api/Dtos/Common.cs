@@ -33,7 +33,7 @@ namespace ExpensesTracker.Api.Dtos
         [XmlIgnore]
         public IEnumerable<Link> Links { get; set; }
 
-        // since XmlDataContractSerializerFormatter does work with property attributes
+        // since XmlDataContractSerializerFormatter does not work with property attributes
         // it is neccessary to use XmlSerializerFormatter which can not serialize interfaces
         // so this fake property is needed
         [XmlArray(ElementName = "Links")]
