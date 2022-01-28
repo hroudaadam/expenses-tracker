@@ -1,5 +1,5 @@
 # Expenses tracker
-REST API server application to improve my skills with .NET
+REST API to improve my skills with .NET
 
 **Goals**
 - REST API 
